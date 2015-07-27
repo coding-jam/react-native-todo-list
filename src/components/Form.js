@@ -1,4 +1,5 @@
 var React = require('react-native');
+var Actions = require('../Actions');
 
 var {
   StyleSheet,
@@ -32,17 +33,34 @@ module.exports = class extends React.Component{
 
   constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        todoText:""
+      };
+
+      this.onSavePress = this._onSavePress.bind(this);
+      this.onChangeInput = this._onChangeInput.bind(this);
+  }
+
+  _onSavePress(){
+    Actions.add(this.state.todoText);
+  }
+
+  _onChangeInput(event){
+    this.setState({
+      todoText:event.nativeEvent.text
+    });
   }
 
 	render() {
 	    return (
         <View style={styles.row}>
 	    	  <TextInput
+            placeholder="Add a ToDo..."
+            onChange={this.onChangeInput}
             style={styles.input}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}/>
+            value={this.state.todoText}/>
           <TouchableHighlight
+            onPress={this.onSavePress}
             style={styles.button}>
               <Text style={{textAlign:'center'}}>Salva</Text>
           </TouchableHighlight>        

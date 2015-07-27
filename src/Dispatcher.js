@@ -1,5 +1,5 @@
-import Flux from "flux";
+var Flux = require("flux");
 
 var Dispatcher = Flux.Dispatcher;
 
-export default new Dispatcher();
+module.exports = new Dispatcher();

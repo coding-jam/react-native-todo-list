@@ -6,6 +6,9 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.7.1"
+    "events": "^1.0.2",
+    "flux": "^2.0.3",
+    "react-native": "^0.7.1",
+    "underscore": "^1.8.3"
   }
 }

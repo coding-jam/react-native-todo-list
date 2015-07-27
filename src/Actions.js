@@ -1,4 +1,4 @@
-import Dispatcher from "src/Dispatcher";
+var Dispatcher = require("./Dispatcher");
 
 var add = function(text) {
 	Dispatcher.dispatch({
@@ -28,7 +28,7 @@ var deleteAll = function(){
 	});
 };
 
-export default {
+module.exports = {
 	add: add,
 	update: update,
 	delete:deleteTodo,

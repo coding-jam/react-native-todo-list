@@ -1,6 +1,6 @@
-import Dispatcher from "src/Dispatcher";
-import Events from "events";
-import _ from "underscore";
+var Dispatcher = require("./Dispatcher");
+var Events = require("events");
+var _ = require("underscore");
 
 var EventEmitter = Events.EventEmitter;
 
@@ -53,4 +53,4 @@ var TodoStore = _.extend({
 	}
 },EventEmitter.prototype);
 
-export default TodoStore;
+module.exports = TodoStore;
