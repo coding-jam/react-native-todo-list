@@ -42,10 +42,12 @@ module.exports = class extends React.Component{
   }
 
   _onSavePress(){
-    Actions.add(this.state.todoText);
-    this.setState({
-      todoText:""
-    });
+    if(this.state.todoText){
+      Actions.add(this.state.todoText);
+      this.setState({
+        todoText:""
+      });  
+    }
   }
 
   _onChangeInput(event){
@@ -65,7 +67,7 @@ module.exports = class extends React.Component{
           <TouchableHighlight
             onPress={this.onSavePress}
             style={styles.button}>
-              <Text style={{textAlign:'center'}}>Salva</Text>
+              <Text style={{textAlign:'center'}}>Save</Text>
           </TouchableHighlight>        
         </View>
 	    );
