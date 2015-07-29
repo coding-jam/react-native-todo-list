@@ -1,5 +1,6 @@
 var React = require('react-native');
 var Form = require('./Form');
+var List = require('./List');
 
 var {
   StyleSheet,
@@ -20,10 +21,11 @@ module.exports = class extends React.Component{
 	    return (
 	    	<View>
 	    		<Text style={styles.title}>
-          			React Native Todo-List
-        		</Text>
-        		<Form></Form>
-      		</View>
+      			React Native Todo-List
+      		</Text>
+      		<Form/>
+          <List/>
+    		</View>
 	    );
 	}
 }

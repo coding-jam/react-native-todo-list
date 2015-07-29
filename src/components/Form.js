@@ -43,6 +43,9 @@ module.exports = class extends React.Component{
 
   _onSavePress(){
     Actions.add(this.state.todoText);
+    this.setState({
+      todoText:""
+    });
   }
 
   _onChangeInput(event){
