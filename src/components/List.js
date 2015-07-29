@@ -1,11 +1,13 @@
 var React = require('react-native');
 var Store = require('../Store');
+var Actions = require('../Actions');
 
 var {
   StyleSheet,
   View,
   ListView,
-  Text
+  Text,
+  TouchableHighlight
 } = React;
 
 var styles = StyleSheet.create({
@@ -19,6 +21,16 @@ var styles = StyleSheet.create({
     	marginTop:5,
     	padding: 5
 	},
+	todoText:{
+		flex:9
+	},
+	deleteButton:{
+	    flex:3,
+	    borderWidth:1,
+	    borderColor:'black',
+	    borderRadius:5,
+	    backgroundColor:'red'
+  	},	
 	listView: {
    		paddingLeft: 30,
    		paddingRight: 30
@@ -30,9 +42,7 @@ module.exports = class extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.state = {
-			dataSource: new ListView.DataSource({
-	        	rowHasChanged: (row1, row2) => true,
-	      	})
+			dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 	    };
 
 	    this.listener = this._listener.bind(this);
@@ -40,19 +50,28 @@ module.exports = class extends React.Component{
 	}
 
 	_listener(){
-		console.log(Store.get());
 		this.setState({
 			dataSource: this.state.dataSource.cloneWithRows(Store.get())
 	    });
 	}
 
+	_onDeletePress(rowId){
+		console.log(rowId);
+		Actions.delete(parseInt(rowId,10));
+	}
+
 	_renderRow(todo,sectionID,rowId) {
 		return (
 	      <View style={styles.row}>
-	        <Text>{rowId} - {todo}</Text>
+	        <Text style={styles.todoText}>{todo}</Text>
+	        <TouchableHighlight
+	            onPress={this._onDeletePress.bind(this,rowId)}
+	            style={styles.deleteButton}>
+	              <Text style={{textAlign:'center'}}>Delete</Text>
+          	</TouchableHighlight>     
 	      </View>
 	    );
-	  }
+	}
 
 	componentDidMount() {
 	    Store.addChangeListener(this.listener);
