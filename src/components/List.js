@@ -60,6 +60,15 @@ module.exports = class extends React.Component{
 		Actions.delete(parseInt(rowId,10));
 	}
 
+
+	componentDidMount() {
+	    Store.addChangeListener(this.listener);
+	}
+
+	componentWillUnmount() {
+		Store.removeChangeListener(this.listener);
+	}
+
 	_renderRow(todo,sectionID,rowId) {
 		return (
 	      <View style={styles.row}>
@@ -72,15 +81,7 @@ module.exports = class extends React.Component{
 	      </View>
 	    );
 	}
-
-	componentDidMount() {
-	    Store.addChangeListener(this.listener);
-	}
-
-	componentWillUnmount() {
-		Store.removeChangeListener(this.listener);
-	}
-
+	
 	render() {
 	    return (
 	        <View>
