@@ -56,7 +56,6 @@ module.exports = class extends React.Component{
 	}
 
 	_onDeletePress(rowId){
-		console.log(rowId);
 		Actions.delete(parseInt(rowId,10));
 	}
 
